@@ -1,0 +1,26 @@
+
+form.form-style novalidate="" name="form" ng-controller="UrlShortsCtrl" layout="column"
+  .waiting_splash layout="row" layout-align="center center" ng-show="on_AjaxReq"
+    md-progress-circular  md-diameter="96"
+  md-input-container
+    label Enter the original URL
+    input ng-model="form_data.original_url.content" name="origanal_url" required="" ng-focus="form_data.original_url.error_visible = false"
+  
+  md-input-container ng-show="form_data.original_url.error_visible"
+    input.error_message disabled=""  ng-model="form_data.original_url.error_content"
+  
+  md-input-container
+    label Enter your preferred short URL
+    input ng-model="form_data.short_url.content" name="short_url" ng-focus="form_data.short_url.error_visible = false"
+  
+  md-input-container ng-show ="form_data.short_url.error_visible"
+    input.error_message disabled=""  ng-model="form_data.short_url.error_content"
+  
+  md-input-container ng-show ="form_data.common_error.error_visible"
+    input.error_message disabled="" ng-model="form_data.common_error.error_content"
+    
+  md-input-container ng-show="form_data.short_url_result.visible"
+    label Your shortened URL
+    input ng-model="form_data.short_url_result.content" readonly=""
+    
+  md-button class="md-raised md-primary" ng-disabled="form.$invalid || on_AjaxReq" ng-click="get_short_link()" Get a short URL
